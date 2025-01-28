@@ -8,7 +8,11 @@ lerna-debug.log*
 
 
 
+# NPM
+node_modules
 
+# IDE
+.idea
 
 # dotenv environment variable files
 .env

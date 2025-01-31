@@ -1,0 +1,20 @@
+model Media {
+  id            Int             @id @default(autoincrement())
+  name          String
+  path          String
+  MediaBuilding MediaBuilding[]
+}
+
+model MediaBuilding {
+  id         Int      @id @default(autoincrement())
+  media      Media    @relation(fields: [mediaId], references: [id])
+  building   Building @relation(fields: [buildingId], references: [id])
+  buildingId Int
+  mediaId    Int
+}
+
+model MediaUser {
+  id     Int  @id @default(autoincrement())
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+}

@@ -2,11 +2,13 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as process from 'node:process';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { Logger } from '@nestjs/common';
 
 const start = async () => {
     try {
         const PORT = process.env.PORT || 5000;
         const app = await NestFactory.create(AppModule);
+        const logger = app.get(Logger);
 
         const config = new DocumentBuilder()
             .setTitle('API')
@@ -14,10 +16,11 @@ const start = async () => {
             .setVersion('1.0')
             .addTag('Users')
             .build();
+
         const document = SwaggerModule.createDocument(app, config);
         SwaggerModule.setup('api', app, document);
 
-        await app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+        await app.listen(PORT, () => logger.log(`Listening on port ${PORT}`));
     } catch (e) {
         console.log(e);
     }

@@ -1,0 +1,22 @@
+model Role {
+  id    Int    @id @default(autoincrement())
+  name  String @unique
+  users User[]
+}
+
+model User {
+  id         Int         @id @default(autoincrement())
+  email      String      @unique
+  password   String
+  name       String
+  surname    String
+  patronymic String?
+  phone      String?
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+  Role       Role        @relation(fields: [roleId], references: [id])
+  roleId     Int
+  Student    Student[]
+  Teacher    Teacher[]
+  MediaUser  MediaUser[]
+}

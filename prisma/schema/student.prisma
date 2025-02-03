@@ -1,0 +1,16 @@
+model Student {
+  id             Int          @id @default(autoincrement())
+  year_start     Int
+  user           User         @relation(fields: [userId], references: [id])
+  userId         Int
+  StudentGroup   StudentGroup @relation(fields: [studentGroupId], references: [id])
+  studentGroupId Int
+}
+
+model StudentGroup {
+  id         Int       @id @default(autoincrement())
+  name       String
+  shortname  String
+  created_at DateTime
+  students   Student[]
+}

@@ -12,8 +12,10 @@ model User {
   surname    String
   patronymic String?
   phone      String?
-  Role       Role?       @relation(fields: [roleId], references: [id])
-  roleId     Int?
+  created_at DateTime    @default(now())
+  updated_at DateTime    @updatedAt
+  Role       Role        @relation(fields: [roleId], references: [id])
+  roleId     Int
   Student    Student[]
   Teacher    Teacher[]
   MediaUser  MediaUser[]

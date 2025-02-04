@@ -8,6 +8,13 @@ const start = async () => {
     try {
         const PORT = process.env.PORT || 5000;
         const app = await NestFactory.create(AppModule);
+
+        app.enableCors({
+            origin: 'http://localhost:5173',
+            methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+            credentials: true,
+        });
+
         const logger = app.get(Logger);
 
         const config = new DocumentBuilder()

@@ -8,11 +8,12 @@ import { AdminModule } from './admin/admin.module';
 import { ScheduleModule } from './schedule/schedule.module';
 import { NewsModule } from './news/news.module';
 import { ForumModule } from './forum/forum.module';
+import configuration from './config/configuration';
 
 @Module({
     imports: [
         ConfigModule.forRoot({
-            isGlobal: true,
+            load: [configuration],
         }),
         PrismaModule,
         AuthModule,
